@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { UpdateUserDto } from '../dtos/update-user.sto';
 import { UserRepository } from '../repository/user.repository';
+import { UserResponseType } from '../types/user-response.type';
 
 @Injectable()
 export class UpdateUserById {
   constructor(private userRepository: UserRepository) {}
 
-  async execute(id: number, data: UpdateUserDto) {
+  async execute(id: number, data: UpdateUserDto): Promise<UserResponseType> {
     const userExists = await this.userRepository.findOneById(id);
 
     if (!userExists) {

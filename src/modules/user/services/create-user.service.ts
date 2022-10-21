@@ -1,12 +1,13 @@
 import { UserRepository } from './../repository/user.repository';
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from '../dtos/create-user.dto';
+import { UserResponseType } from '../types/user-response.type';
 
 @Injectable()
 export class CreateUserService {
   constructor(private userRepository: UserRepository) {}
 
-  async execute(data: CreateUserDto) {
+  async execute(data: CreateUserDto): Promise<UserResponseType> {
     const { email } = data;
 
     const emailAlreadyExists = await this.userRepository.findUserByEmail(email);

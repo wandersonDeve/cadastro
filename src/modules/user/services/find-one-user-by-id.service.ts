@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { UserRepository } from '../repository/user.repository';
+import { UserResponseType } from '../types/user-response.type';
 
 @Injectable()
 export class FindOneUserById {
   constructor(private userRepository: UserRepository) {}
 
-  async execute(id: number) {
+  async execute(id: number): Promise<UserResponseType> {
     const userExists = await this.userRepository.findOneById(id);
 
     if (!userExists) {
