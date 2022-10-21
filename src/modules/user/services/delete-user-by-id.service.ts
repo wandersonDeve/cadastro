@@ -20,7 +20,7 @@ export class DeleteUserById {
     await this.userRepository.deleteUserById(id);
 
     return {
-      codigo: 204,
+      codigo: 200,
       status: 'Sucesso',
       mensagem: 'Usuario deletado com sucesso',
     };

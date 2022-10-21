@@ -14,7 +14,7 @@ model User {
   email     String   @unique()
   phone     String
   cpf       String   @unique()
-  address   Address?
+  address   Address[]
 }
 
 model Address {
@@ -27,5 +27,5 @@ model Address {
   number       String
   complement   String?
   user         User   @relation(fields: [userId], references: [id])
-  userId       Int    @unique
+  userId       Int
 }
