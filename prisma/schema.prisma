@@ -25,7 +25,7 @@ model Address {
   street       String
   neighborhood String
   number       String
-  complement   String
+  complement   String?
   user         User   @relation(fields: [userId], references: [id])
   userId       Int    @unique
 }
