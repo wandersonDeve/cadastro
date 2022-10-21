@@ -8,7 +8,7 @@ export class CreateUserService {
   constructor(private userRepository: UserRepository) {}
 
   async execute(data: CreateUserDto): Promise<UserResponseType> {
-    const { email } = data;
+    const { email, cpf } = data;
 
     const emailAlreadyExists = await this.userRepository.findUserByEmail(email);
 
@@ -17,6 +17,16 @@ export class CreateUserService {
         codigo: 400,
         status: 'Falha',
         mensagem: 'Email já cadastrado',
+      };
+    }
+
+    const cpfAlreadyExists = await this.userRepository.findUserByCpf(cpf);
+
+    if (cpfAlreadyExists) {
+      return {
+        codigo: 400,
+        status: 'Falha',
+        mensagem: 'Cpf já cadastrado',
       };
     }
 

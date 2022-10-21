@@ -21,6 +21,14 @@ export class UserRepository extends PrismaClient {
       .catch(handleError);
   }
 
+  async findUserByCpf(cpf: string): Promise<UserEntity> {
+    return this.user
+      .findUnique({
+        where: { cpf },
+      })
+      .catch(handleError);
+  }
+
   async findOneById(id: number): Promise<UserEntity> {
     return this.user
       .findUnique({

@@ -32,6 +32,18 @@ export class UpdateUserById {
       }
     }
 
+    if (data.cpf) {
+      const cpfAlreadyExists = await this.userRepository.findUserByCpf(data.cpf);
+
+      if (cpfAlreadyExists) {
+        return {
+          codigo: 400,
+          status: 'Falha',
+          mensagem: 'Cpf já cadastrado',
+        };
+      }
+    }
+
     const updatedUser = await this.userRepository.updateUserById(id, data);
 
     return {
