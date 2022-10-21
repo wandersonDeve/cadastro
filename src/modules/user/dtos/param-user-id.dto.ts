@@ -2,6 +2,6 @@ import { IsNotEmpty, IsNumberString } from 'class-validator';
 
 export class ParamUserId {
   @IsNumberString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'O campo id não pode ser vazio' })
   id: string;
 }
