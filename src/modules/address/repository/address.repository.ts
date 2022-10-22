@@ -7,4 +7,8 @@ export class AddressRepository extends PrismaClient {
   async createAddress(data: CreateAddressDto): Promise<AddressEntity> {
     return this.address.create({ data }).catch(handleError);
   }
+
+  async findAddressById(id: number): Promise<AddressEntity> {
+    return this.address.findUnique({ where: { id } }).catch(handleError);
+  }
 }
