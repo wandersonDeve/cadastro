@@ -1,11 +1,13 @@
-import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { ParamUserId } from '../user/dtos/param-user-id.dto';
 import { CreateAddressDto } from './dtos/create-address.dto';
 import { ParamAddressId } from './dtos/param-address-id.dto';
+import { UpdateAddressDto } from './dtos/update-address.sto';
 import { CreateAddressService } from './services/create-address.service';
 import { FindAddressByIdService } from './services/find-address-by-id.service';
 import { FindAddressesByUserIdService } from './services/find-addresses-by-user-id.service';
+import { UpdateAddressByIdService } from './services/update-address-by-id.service';
 
 @Controller('enderecos-usuario')
 export class AddressController {
@@ -13,6 +15,7 @@ export class AddressController {
     private createAddressService: CreateAddressService,
     private findAddressByIdService: FindAddressByIdService,
     private findAddressesByUserIdService: FindAddressesByUserIdService,
+    private updateAddressByIdService: UpdateAddressByIdService,
   ) {}
 
   @Post()
@@ -41,6 +44,20 @@ export class AddressController {
   ) {
     const response = await this.findAddressesByUserIdService.execute(
       +id_usuario,
+    );
+
+    return res.status(response.codigo).send(response);
+  }
+
+  @Put(':id_endereco_usuario')
+  async updateAddress(
+    @Param() { id_endereco_usuario }: ParamAddressId,
+    @Body() data: UpdateAddressDto,
+    @Res() res: Response,
+  ) {
+    const response = await this.updateAddressByIdService.execute(
+      +id_endereco_usuario,
+      data,
     );
 
     return res.status(response.codigo).send(response);

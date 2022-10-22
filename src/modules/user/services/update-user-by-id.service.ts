@@ -33,7 +33,9 @@ export class UpdateUserById {
     }
 
     if (data.cpf) {
-      const cpfAlreadyExists = await this.userRepository.findUserByCpf(data.cpf);
+      const cpfAlreadyExists = await this.userRepository.findUserByCpf(
+        data.cpf,
+      );
 
       if (cpfAlreadyExists) {
         return {

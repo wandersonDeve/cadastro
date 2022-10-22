@@ -5,6 +5,7 @@ import { AddressRepository } from './repository/address.repository';
 import { CreateAddressService } from './services/create-address.service';
 import { FindAddressByIdService } from './services/find-address-by-id.service';
 import { FindAddressesByUserIdService } from './services/find-addresses-by-user-id.service';
+import { UpdateAddressByIdService } from './services/update-address-by-id.service';
 
 @Module({
   imports: [UserModule],
@@ -14,6 +15,7 @@ import { FindAddressesByUserIdService } from './services/find-addresses-by-user-
     CreateAddressService,
     FindAddressByIdService,
     FindAddressesByUserIdService,
+    UpdateAddressByIdService,
   ],
 })
 export class AddressModule {}
