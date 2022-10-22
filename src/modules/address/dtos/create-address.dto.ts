@@ -1,8 +1,10 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsCEP } from 'brazilian-class-validator';
 
 export class CreateAddressDto {
   @IsString({ message: 'O campo zip_code deve ser uma string' })
   @IsNotEmpty({ message: 'O campo zip_code não pode ser vazio' })
+  @IsCEP({ message: 'Preencha o campo zip_code com um CEP valido' })
   zip_code: string;
 
   @IsString({ message: 'O campo city deve ser uma string' })
@@ -26,7 +28,7 @@ export class CreateAddressDto {
   number: string;
 
   @IsString({ message: 'O campo complement deve ser uma string' })
-  @IsNotEmpty({ message: 'O campo complement não pode ser vazio' })
+  @IsOptional()
   complement: string;
 
   @IsNumber()

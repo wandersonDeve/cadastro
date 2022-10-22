@@ -3,7 +3,7 @@ import { Response } from 'express';
 import { CreateAddressDto } from './dtos/create-address.dto';
 import { CreateAddressService } from './services/create-address.service';
 
-@Controller('address')
+@Controller('enderecos-usuario')
 export class AddressController {
   constructor(private createAddressService: CreateAddressService) {}
 

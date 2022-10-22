@@ -10,7 +10,9 @@ export class UserRepository extends PrismaClient {
   }
 
   async findAllUsers(): Promise<UserEntity[]> {
-    return this.user.findMany().catch(handleError);
+    return this.user
+      .findMany({ include: { address: true } })
+      .catch(handleError);
   }
 
   async findUserByEmail(email: string): Promise<UserEntity> {
@@ -33,6 +35,9 @@ export class UserRepository extends PrismaClient {
     return this.user
       .findUnique({
         where: { id },
+        include: {
+          address: true,
+        },
       })
       .catch(handleError);
   }
