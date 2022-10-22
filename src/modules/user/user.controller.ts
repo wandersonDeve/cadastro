@@ -43,27 +43,30 @@ export class UserController {
     return Res.status(response.codigo).send(response);
   }
 
-  @Get(':id')
-  async findUserbyId(@Param() { id }: ParamUserId, @Res() Res: Response) {
-    const response = await this.findOneUserById.execute(+id);
+  @Get(':id_usuario')
+  async findUserbyId(
+    @Param() { id_usuario }: ParamUserId,
+    @Res() Res: Response,
+  ) {
+    const response = await this.findOneUserById.execute(+id_usuario);
 
     return Res.status(response.codigo).send(response);
   }
 
-  @Put(':id')
+  @Put(':id_usuario')
   async updateUser(
-    @Param() { id }: ParamUserId,
+    @Param() { id_usuario }: ParamUserId,
     @Body() data: UpdateUserDto,
     @Res() Res: Response,
   ) {
-    const response = await this.updateUserById.execute(+id, data);
+    const response = await this.updateUserById.execute(+id_usuario, data);
 
     return Res.status(response.codigo).send(response);
   }
 
-  @Delete(':id')
-  async deleteUse(@Param() { id }: ParamUserId, @Res() Res: Response) {
-    const response = await this.deleteUserById.execute(+id);
+  @Delete(':id_usuario')
+  async deleteUse(@Param() { id_usuario }: ParamUserId, @Res() Res: Response) {
+    const response = await this.deleteUserById.execute(+id_usuario);
 
     return Res.status(response.codigo).send(response);
   }

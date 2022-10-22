@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { AddressRepository } from '../repository/address.repository';
 
 @Injectable()
-export class FindAddressById {
+export class FindAddressByIdService {
   constructor(private addressRepository: AddressRepository) {}
 
   async execute(id: number) {

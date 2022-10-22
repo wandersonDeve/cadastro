@@ -17,5 +17,6 @@ import { UserController } from './user.controller';
     UpdateUserById,
     DeleteUserById,
   ],
+  exports: [UserRepository],
 })
 export class UserModule {}
