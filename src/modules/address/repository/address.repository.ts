@@ -36,4 +36,14 @@ export class AddressRepository extends PrismaClient {
       })
       .catch(handleError);
   }
+
+  async deleteAddressById(id: number): Promise<void> {
+    await this.address
+      .delete({
+        where: {
+          id,
+        },
+      })
+      .catch(handleError);
+  }
 }

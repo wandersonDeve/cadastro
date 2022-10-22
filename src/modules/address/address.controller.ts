@@ -1,10 +1,20 @@
-import { Body, Controller, Get, Param, Post, Put, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Res,
+} from '@nestjs/common';
 import { Response } from 'express';
 import { ParamUserId } from '../user/dtos/param-user-id.dto';
 import { CreateAddressDto } from './dtos/create-address.dto';
 import { ParamAddressId } from './dtos/param-address-id.dto';
 import { UpdateAddressDto } from './dtos/update-address.sto';
 import { CreateAddressService } from './services/create-address.service';
+import { DeleteAddressByIdService } from './services/delete-address-by-id.service';
 import { FindAddressByIdService } from './services/find-address-by-id.service';
 import { FindAddressesByUserIdService } from './services/find-addresses-by-user-id.service';
 import { UpdateAddressByIdService } from './services/update-address-by-id.service';
@@ -16,6 +26,7 @@ export class AddressController {
     private findAddressByIdService: FindAddressByIdService,
     private findAddressesByUserIdService: FindAddressesByUserIdService,
     private updateAddressByIdService: UpdateAddressByIdService,
+    private deleteAddressByIdService: DeleteAddressByIdService,
   ) {}
 
   @Post()
@@ -58,6 +69,18 @@ export class AddressController {
     const response = await this.updateAddressByIdService.execute(
       +id_endereco_usuario,
       data,
+    );
+
+    return res.status(response.codigo).send(response);
+  }
+
+  @Delete(':id_endereco_usuario')
+  async deleteAddress(
+    @Param() { id_endereco_usuario }: ParamAddressId,
+    @Res() res: Response,
+  ) {
+    const response = await this.deleteAddressByIdService.execute(
+      +id_endereco_usuario,
     );
 
     return res.status(response.codigo).send(response);
